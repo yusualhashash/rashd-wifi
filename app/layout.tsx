@@ -19,12 +19,12 @@ const cairo = Cairo({ subsets: ["arabic", "latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "RASHD-WIFI - إنترنت سريع وموثوق في العراق",
+    default: "RASHD-WIFI",
     template: "%s | RASHD-WIFI",
   },
   description:
     "شركة راشد واي فاي - نقدم خدمات إنترنت سريعة وموثوقة في العراق. دعم فني 24/7، باقات متنوعة، وتغطية واسعة. اشترك الآن واستمتع بأفضل خدمة إنترنت.",
-  keywords: ["إنترنت العراق", "واي فاي", "RASHD-WIFI", "إنترنت سريع", "خدمات إنترنت", "باقات إنترنت"],
+  keywords: ["إنترنت العراق", "واي فاي", "راشد واي فاي", "راشد وايفاي", "RASHD-WIFI", "إنترنت سريع", "خدمات إنترنت", "باقات إنترنت"],
   authors: [{ name: "RASHD-WIFI" }],
   creator: "RASHD-WIFI",
   publisher: "RASHD-WIFI",
