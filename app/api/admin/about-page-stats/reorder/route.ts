@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server"
-import { updateAboutPageStatOrder } from "@/lib/content"
+import { createAboutPageStat } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   try {
-    const { updates } = await request.json()
-    await Promise.all(
-      updates.map((update: { id: number; sort_order: number }) =>
-        updateAboutPageStatOrder(update.id, update.sort_order),
-      ),
-    )
+    const { icon, value, label, sort_order } = await request.json()
+    await createAboutPageStat(icon, value, label, sort_order)
+
+    revalidatePath("/about")
+    revalidatePath("/admin/about")
+
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Error reordering about page stats:", error)
-    return NextResponse.json({ error: "Failed to reorder" }, { status: 500 })
+    console.error("Error creating about page stat:", error)
+    return NextResponse.json({ error: "Failed to create" }, { status: 500 })
   }
 }

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { updateWhyChooseSection } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function PUT(request: NextRequest) {
   try {
@@ -11,6 +12,8 @@ export async function PUT(request: NextRequest) {
     }
 
     await updateWhyChooseSection(id, section_title)
+    revalidatePath("/")
+    revalidatePath("/admin")
 
     return NextResponse.json({ success: true })
   } catch (error) {

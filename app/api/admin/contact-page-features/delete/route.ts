@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { deleteContactPageFeature } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +13,8 @@ export async function POST(request: Request) {
 
     await deleteContactPageFeature(id)
 
+    revalidatePath("/contact")
+    revalidatePath("/admin/contact-page")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error deleting contact page feature:", error)

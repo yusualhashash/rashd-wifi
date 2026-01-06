@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { updateFooterSocialOrder } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   try {
@@ -8,7 +9,7 @@ export async function POST(request: Request) {
     for (const link of links) {
       await updateFooterSocialOrder(link.id, link.sort_order)
     }
-
+    revalidatePath("/", "layout")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Reorder error:", error)

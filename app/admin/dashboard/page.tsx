@@ -132,7 +132,7 @@ export default function AdminDashboard() {
                   <CardDescription>تحرير البانر والخريطة والمناطق المشمولة</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/admin/coverage-page">
+                  <Link href="/admin/coverage">
                     <Button className="w-full">إدارة الصفحة</Button>
                   </Link>
                 </CardContent>
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
                   <CardDescription>تحرير البانر والإحصائيات والمميزات</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/admin/about-page">
+                  <Link href="/admin/about">
                     <Button className="w-full">إدارة الصفحة</Button>
                   </Link>
                 </CardContent>

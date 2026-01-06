@@ -256,7 +256,7 @@ export function ContactInfoList({ contactInfo: initialContactInfo }: ContactInfo
                   <Label>نشط</Label>
                 </div>
                 <div className="flex gap-2">
-                  <Button onClick={handleCreate} className="min-w-[140px]" disabled={isSaving}>
+                  <Button onClick={handleCreate} className="min-w-35" disabled={isSaving}>
                     <Save className="ml-2 h-4 w-4" />
                     {isSaving ? "جاري الحفظ..." : "حفظ"}
                   </Button>

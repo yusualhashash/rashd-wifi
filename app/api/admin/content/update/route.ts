@@ -1,10 +1,11 @@
-import { type NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
+import { revalidatePath } from "next/cache"
 import { neon } from "@neondatabase/serverless"
 import { cookies } from "next/headers"
 
 const sql = neon(process.env.DATABASE_URL!)
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
     // Check authentication
     const cookieStore = await cookies()
@@ -25,6 +26,8 @@ export async function POST(request: NextRequest) {
         WHERE id = ${item.id}
       `
     }
+
+    revalidatePath("/", "layout")
 
     return NextResponse.json({ success: true, message: "Content updated successfully" })
   } catch (error) {

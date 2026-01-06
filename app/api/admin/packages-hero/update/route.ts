@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { updatePackagesHero } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,6 +29,8 @@ export async function POST(request: NextRequest) {
       background_image,
     )
 
+    revalidatePath("/packages")
+    revalidatePath("/admin/packages-hero")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error updating packages hero:", error)

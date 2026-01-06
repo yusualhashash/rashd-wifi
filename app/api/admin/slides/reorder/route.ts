@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { updateHeroSlideOrder } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   const cookieStore = await cookies()
@@ -15,7 +16,8 @@ export async function POST(request: Request) {
     const { id, sort_order } = body
 
     await updateHeroSlideOrder(id, sort_order)
-
+    revalidatePath("/")
+    revalidatePath("/admin/slides")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error reordering slide:", error)

@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { getContactPageHero, getContactInfo, getContactPageFeatures } from "@/lib/content"
-import { Phone, Mail, MapPin, MessageCircle, Facebook, Instagram, Twitter, Headphones, Sparkles, ArrowRight } from "lucide-react"
-import Link from "next/link"
+import { getContactInfo, getContactPageFeatures, getContactPageHero } from "@/lib/content"
+import { Facebook, Headphones, Instagram, Mail, MapPin, MessageCircle, Phone, Sparkles, Twitter } from "lucide-react"
 
 const iconMap: Record<string, any> = {
   phone: Phone,
@@ -49,7 +48,7 @@ export default async function ContactPage() {
     <div className="min-h-screen bg-gray-50" dir="rtl">
       {/* Hero Section */}
       <section
-        className="relative min-h-[400px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800"
+        className="relative min-h-100 flex items-center justify-center overflow-hidden bg-linear-to-br from-emerald-600 via-emerald-700 to-emerald-800"
         style={
           heroData?.background_image
             ? {
@@ -157,7 +156,7 @@ export default async function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-base text-gray-900 mb-2">{info.label}</h3>
-                      <p className="text-sm text-gray-600 break-words">{info.value}</p>
+                      <p className="text-sm text-gray-600 wrap-break-word">{info.value}</p>
                     </div>
                   </a>
                 </Card>

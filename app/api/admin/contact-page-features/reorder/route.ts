@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { updateContactPageFeatureOrder } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   try {
@@ -15,7 +16,8 @@ export async function POST(request: Request) {
         updateContactPageFeatureOrder(feature.id, feature.sort_order),
       ),
     )
-
+    revalidatePath("/contact")
+    revalidatePath("/admin/contact-page")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error reordering contact page features:", error)

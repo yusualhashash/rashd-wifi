@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { deleteHeroSlide } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   const cookieStore = await cookies()
@@ -15,7 +16,8 @@ export async function POST(request: Request) {
     const { id } = body
 
     await deleteHeroSlide(id)
-
+    revalidatePath("/")
+    revalidatePath("/admin/slides")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error deleting slide:", error)

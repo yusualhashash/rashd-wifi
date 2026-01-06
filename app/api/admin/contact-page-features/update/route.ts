@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { updateContactPageFeature } from "@/lib/content"
+import { revalidatePath } from "next/cache"
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +13,8 @@ export async function POST(request: Request) {
 
     await updateContactPageFeature(id, icon, title, description, is_active)
 
+    revalidatePath("/contact")
+    revalidatePath("/admin/contact-page")
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error updating contact page feature:", error)
